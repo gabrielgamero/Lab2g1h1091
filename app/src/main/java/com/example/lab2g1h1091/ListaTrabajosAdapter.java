@@ -1,12 +1,16 @@
 package com.example.lab2g1h1091;
 
 import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab2g1h1091.entidades.Trabajo;
+
+import org.w3c.dom.Text;
 
 public class ListaTrabajosAdapter extends RecyclerView.Adapter {
 
@@ -19,6 +23,15 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter {
     public ListaTrabajosAdapter(Trabajo[] lista, Context c) {
         this.listTrabajos = lista;
         this.contexto = c;
+    }
+
+    public static class TrabajoViewHolder extends RecyclerView.ViewHolder{
+        TextView textViewJobTitle;
+
+        public TrabajoViewHolder(View itemView) {
+            super(itemView);
+            textViewJobTitle = itemView.findViewById(R.id.textViewJobTitle);
+        }
     }
 
     @NonNull
