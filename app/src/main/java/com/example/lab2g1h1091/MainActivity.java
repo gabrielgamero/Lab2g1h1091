@@ -55,6 +55,16 @@ public class MainActivity extends AppCompatActivity {
                         Trabajo[] listaTrabajos = dtoTrabajo.getTrabajos();
                         Log.d("listaTrabajos0",listaTrabajos[0].getJobTitle());
 
+                        // Creamos el Adapter
+                        ListaTrabajosAdapter listaTrabajosAdapter =
+                                new ListaTrabajosAdapter(listaTrabajos,MainActivity.this);
+
+                        // Obtengamos la vista RecyclerView
+                        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+                        // Configuramos el adapter al RecyclerView
+                        recyclerView.setAdapter(listaTrabajosAdapter);
+                        // Configuramos el layoutManager al RecyclerView
+                        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                     }
                 },
                 new Response.ErrorListener() {
