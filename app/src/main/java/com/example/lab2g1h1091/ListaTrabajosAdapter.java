@@ -13,7 +13,7 @@ import com.example.lab2g1h1091.entidades.Trabajo;
 
 import org.w3c.dom.Text;
 
-public class ListaTrabajosAdapter extends RecyclerView.Adapter {
+public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdapter.TrabajoViewHolder> {
 
     // Data que obtendré de onResponse
     Trabajo[] listTrabajos;
@@ -37,7 +37,7 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TrabajoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Inflar el layout del item que se repetirá (y guardarlo en item)
         View item = LayoutInflater.from(contexto).inflate(R.layout.item_rv,parent,false);
         // Creamos el ViewHolder
@@ -47,8 +47,12 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull TrabajoViewHolder holder, int position) {
+        // Obtenemos el Trabajo de la posicion ...
+        Trabajo t = listTrabajos[position];
+        // Obtenemos los parámetros del trabajo:
+        String texto = Integer.toString(position) + " " + t.getJobTitle();
+        holder.textViewJobTitle.setText(texto);
     }
 
     @Override
