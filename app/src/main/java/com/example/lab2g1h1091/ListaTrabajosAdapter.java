@@ -57,6 +57,7 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
 
     @Override
     public int getItemCount() {
-        return 0;
+        // Pasar cuantos elementos tiene nuestra lista:
+        return listTrabajos.length;
     }
 }
