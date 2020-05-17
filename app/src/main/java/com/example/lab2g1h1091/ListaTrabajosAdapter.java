@@ -1,6 +1,7 @@
 package com.example.lab2g1h1091;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -36,8 +37,13 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // Inflar el layout del item que se repetirá (y guardarlo en item)
+        View item = LayoutInflater.from(contexto).inflate(R.layout.item_rv,parent,false);
+        // Creamos el ViewHolder
+        TrabajoViewHolder trabajoViewHolder = new TrabajoViewHolder(item);
+        // Retornamos el ViewHolder
+        return trabajoViewHolder;
     }
 
     @Override
