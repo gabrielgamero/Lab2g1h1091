@@ -2,9 +2,10 @@ package com.example.lab2g1h1091.entidades;
 
 public class DtoTrabajo {
 
+    // Todos los nombres de atributos deben coincidir con su NOMBRE y TIPO en JSON
     private String estado;
-    private String cuota;
-    private Trabajo[] lista;
+    private int cuota;
+    private Trabajo[] trabajos;
 
     public String getEstado() {
         return estado;
@@ -14,19 +15,19 @@ public class DtoTrabajo {
         this.estado = estado;
     }
 
-    public String getCuota() {
+    public int getCuota() {
         return cuota;
     }
 
-    public void setCuota(String cuota) {
+    public void setCuota(int cuota) {
         this.cuota = cuota;
     }
 
-    public Trabajo[] getLista() {
-        return lista;
+    public Trabajo[] getTrabajos() {
+        return trabajos;
     }
 
-    public void setLista(Trabajo[] lista) {
-        this.lista = lista;
+    public void setTrabajos(Trabajo[] trabajos) {
+        this.trabajos = trabajos;
     }
 }

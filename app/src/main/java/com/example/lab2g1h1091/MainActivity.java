@@ -20,6 +20,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.lab2g1h1091.entidades.DtoTrabajo;
+import com.example.lab2g1h1091.entidades.Trabajo;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -44,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         Log.d("exitoVolley",response);
 
+                        // Convertir los datos en formato json (response) a una clase en Java con Gson
+                        Gson gson = new Gson();
+                        DtoTrabajo dtoTrabajo = gson.fromJson(response,DtoTrabajo.class);
+                        Log.d("dtoTrabajo.getCuota",Integer.toString(dtoTrabajo.getCuota()));
+
+                        // Obtener la lista de elementos
+                        Trabajo[] listaTrabajos = dtoTrabajo.getTrabajos();
+                        Log.d("listaTrabajos0",listaTrabajos[0].getJobTitle());
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -59,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String,String> cabeceras = new HashMap<>();
-                // Pasamos como cabecera el api-key
+                // Pasamos como cabecera el api-key [obtener el api-key desde android]
                 cabeceras.put("api-key","HTUxbtfKpEb2GJ3Y2d9e");
                 return cabeceras;
             }

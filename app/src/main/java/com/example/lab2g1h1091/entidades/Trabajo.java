@@ -2,17 +2,17 @@ package com.example.lab2g1h1091.entidades;
 
 public class Trabajo {
 
-    private int jobId;
+    private String jobId;
     private String jobTitle;
     private int minSalary;
     private int maxSalary;
     private String createdBy;
 
-    public int getJobId() {
+    public String getJobId() {
         return jobId;
     }
 
-    public void setJobId(int jobId) {
+    public void setJobId(String jobId) {
         this.jobId = jobId;
     }
 
