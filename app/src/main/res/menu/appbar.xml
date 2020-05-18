@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:icon="@drawable/ic_person"
+        android:title="Listar Empleados"
+        app:showAsAction="ifRoom" />
+    <item
+        android:icon="@drawable/ic_add"
+        android:title="Agregar trabajo"
+        app:showAsAction="ifRoom" />
 </menu>
