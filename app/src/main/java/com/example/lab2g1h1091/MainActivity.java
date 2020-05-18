@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             //case R.id.listarEmpleadosAppBar:
             //    Toast.makeText(this,"listarEmpleadosAppBar",Toast.LENGTH_SHORT).show();
              //   return true;
-            case R.id.agregarTrabajoAppBar:
+            case R.id.agregarEmpleadoAppBar:
                 Toast.makeText(this,"agregarTrabajoAppBar",Toast.LENGTH_SHORT).show();
                 return true;
         }

@@ -3,14 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/listarEmpleadosAppBar"
-        android:icon="@drawable/ic_person"
-        android:onClick="accionListarEmpleadosAppBar"
-        android:title="Listar Empleados"
+        android:id="@+id/listarTrabajosAppBar"
+        android:icon="@drawable/ic_holo_dark"
+        android:title="listarTrabajosAppBar"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/agregarEmpleadoAppBar"
         android:icon="@drawable/ic_add"
-        android:title="Agregar trabajo"
+        android:title="agregarEmpleadoAppBar"
         app:showAsAction="ifRoom" />
 </menu>
