@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Trabajos");
     }
 
     // Opciones de AppBar
@@ -51,14 +53,20 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.listarEmpleadosAppBar:
-                Toast.makeText(this,"listarEmpleadosAppBar",Toast.LENGTH_SHORT).show();
-                return true;
+            //case R.id.listarEmpleadosAppBar:
+            //    Toast.makeText(this,"listarEmpleadosAppBar",Toast.LENGTH_SHORT).show();
+             //   return true;
             case R.id.agregarTrabajoAppBar:
                 Toast.makeText(this,"agregarTrabajoAppBar",Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // Abrir EmpleadoActivity (asociar en onClick de la vista)
+    public void accionListarEmpleadosAppBar(MenuItem item){
+        Intent i = new Intent(this,EmpleadoActivity.class);
+        startActivity(i);
     }
 
     public void obtenerDeInternet(View view){

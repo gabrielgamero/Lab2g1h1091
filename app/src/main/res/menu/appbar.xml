@@ -5,6 +5,7 @@
     <item
         android:id="@+id/listarEmpleadosAppBar"
         android:icon="@drawable/ic_person"
+        android:onClick="accionListarEmpleadosAppBar"
         android:title="Listar Empleados"
         app:showAsAction="ifRoom" />
     <item
