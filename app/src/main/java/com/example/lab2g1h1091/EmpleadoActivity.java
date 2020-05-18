@@ -1,10 +1,12 @@
 package com.example.lab2g1h1091;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -12,7 +14,10 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -29,11 +34,39 @@ import java.util.Map;
 
 public class EmpleadoActivity extends AppCompatActivity {
 
+    // Inflater de la AppBar para Empleado
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.appbar_empleado,menu);
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empleado);
         setTitle("Empleados");
+    }
+
+    // Opciones de AppBar
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            //case R.id.listarEmpleadosAppBar:
+            //    Toast.makeText(this,"listarEmpleadosAppBar",Toast.LENGTH_SHORT).show();
+            //   return true;
+            case R.id.agregarEmpleadoAppBar:
+                Toast.makeText(this,"agregarEmpleadoAppBar",Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    // Abrir EmpleadoActivity (asociar en onClick de la vista)
+    public void accionListarTrabajosAppBar(MenuItem item){
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
     }
 
     public void obtenerDeInternet2(View view){

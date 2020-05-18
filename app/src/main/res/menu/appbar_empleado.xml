@@ -5,11 +5,12 @@
     <item
         android:id="@+id/listarTrabajosAppBar"
         android:icon="@drawable/ic_holo_dark"
-        android:title="listarTrabajosAppBar"
+        android:onClick="accionListarTrabajosAppBar"
+        android:title="Ir a Trabajos"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/agregarEmpleadoAppBar"
         android:icon="@drawable/ic_add"
-        android:title="agregarEmpleadoAppBar"
+        android:title="Agregar Empleado"
         app:showAsAction="ifRoom" />
 </menu>

@@ -6,10 +6,10 @@
         android:id="@+id/listarEmpleadosAppBar"
         android:icon="@drawable/ic_person"
         android:onClick="accionListarEmpleadosAppBar"
-        android:title="Listar Empleados"
+        android:title="Ir a Empleados"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/agregarEmpleadoAppBar"
+        android:id="@+id/agregarTrabajoAppBar"
         android:icon="@drawable/ic_add"
         android:title="Agregar trabajo"
         app:showAsAction="ifRoom" />
