@@ -1,6 +1,7 @@
 package com.example.lab2g1h1091;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -65,8 +66,21 @@ public class MainActivity extends AppCompatActivity {
 
     // Abrir EmpleadoActivity (asociar en onClick de la vista)
     public void accionListarEmpleadosAppBar(MenuItem item){
+        // Creando una nueva Activity de EmpleadoActivity
+        /*
         Intent i = new Intent(this,EmpleadoActivity.class);
         startActivity(i);
+         */
+
+        // Creando una nueva Activity de EmpleadoActivity esperando retorno
+        Intent i = new Intent(MainActivity.this,EmpleadoActivity.class);
+        int requestCode = 1;
+        startActivityForResult(i,requestCode);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     public void obtenerDeInternet(View view){

@@ -63,10 +63,19 @@ public class EmpleadoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // Abrir EmpleadoActivity (asociar en onClick de la vista)
+    // Abrir MainActivity (asociar en onClick de la vista)
     public void accionListarTrabajosAppBar(MenuItem item){
+        // Creando una nueva Activity de MainActivity
+        /*
         Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
+         */
+
+        // Regresar a MainActivity pero finalizar esta Activity de EmpleadoActivity
+        //Intent i = new Intent();
+        Intent i = new Intent(EmpleadoActivity.this,MainActivity.class);
+        setResult(RESULT_OK,i);
+        finish();
     }
 
     public void obtenerDeInternet2(View view){
