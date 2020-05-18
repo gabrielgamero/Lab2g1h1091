@@ -28,10 +28,16 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
 
     public static class TrabajoViewHolder extends RecyclerView.ViewHolder{
         TextView textViewJobTitle;
+        TextView textViewJobId;
+        TextView textViewMinSalary;
+        TextView textViewMaxSalary;
 
         public TrabajoViewHolder(View itemView) {
             super(itemView);
             textViewJobTitle = itemView.findViewById(R.id.textViewJobTitle);
+            textViewJobId = itemView.findViewById(R.id.textViewJobId);
+            textViewMinSalary = itemView.findViewById(R.id.textViewMinSalary);
+            textViewMaxSalary = itemView.findViewById(R.id.textViewMaxSalary);
         }
     }
 
@@ -53,6 +59,13 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
         // Obtenemos los parámetros del trabajo:
         String texto = Integer.toString(position) + " " + t.getJobTitle();
         holder.textViewJobTitle.setText(texto);
+
+        String textoJobId = t.getJobId();
+        holder.textViewJobId.setText(textoJobId);
+        String textoMinSalary = Integer.toString(t.getMinSalary());
+        holder.textViewMinSalary.setText(textoMinSalary);
+        String textoMaxSalary = Integer.toString(t.getMaxSalary());
+        holder.textViewMaxSalary.setText(textoMaxSalary);
     }
 
     @Override
