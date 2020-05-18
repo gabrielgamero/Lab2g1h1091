@@ -29,15 +29,17 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
     public static class TrabajoViewHolder extends RecyclerView.ViewHolder{
         TextView textViewJobTitle;
         TextView textViewJobId;
-        TextView textViewMinSalary;
-        TextView textViewMaxSalary;
+        //TextView textViewMinSalary;
+        //TextView textViewMaxSalary;
+        TextView textViewSalaryRange;
 
         public TrabajoViewHolder(View itemView) {
             super(itemView);
             textViewJobTitle = itemView.findViewById(R.id.textViewJobTitle);
             textViewJobId = itemView.findViewById(R.id.textViewJobId);
-            textViewMinSalary = itemView.findViewById(R.id.textViewMinSalary);
-            textViewMaxSalary = itemView.findViewById(R.id.textViewMaxSalary);
+            // textViewMinSalary = itemView.findViewById(R.id.textViewMinSalary);
+            // textViewMaxSalary = itemView.findViewById(R.id.textViewMaxSalary);
+            textViewSalaryRange = itemView.findViewById(R.id.textViewSalaryRange);
         }
     }
 
@@ -62,10 +64,12 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
 
         String textoJobId = t.getJobId();
         holder.textViewJobId.setText(textoJobId);
-        String textoMinSalary = Integer.toString(t.getMinSalary());
-        holder.textViewMinSalary.setText(textoMinSalary);
-        String textoMaxSalary = Integer.toString(t.getMaxSalary());
-        holder.textViewMaxSalary.setText(textoMaxSalary);
+        //String textoMinSalary = Integer.toString(t.getMinSalary());
+        //holder.textViewMinSalary.setText(textoMinSalary);
+        //String textoMaxSalary = Integer.toString(t.getMaxSalary());
+        //holder.textViewMaxSalary.setText(textoMaxSalary);
+        String textoSalaryRange = Integer.toString(t.getMinSalary()) + "-" + Integer.toString(t.getMaxSalary());
+        holder.textViewSalaryRange.setText(textoSalaryRange);
     }
 
     @Override
