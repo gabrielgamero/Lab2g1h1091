@@ -38,4 +38,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     // dependencia para RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    //dependencia para Material Design
+    implementation 'com.google.android.material:material:1.1.0'
 }
