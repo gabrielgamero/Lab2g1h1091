@@ -1,5 +1,6 @@
 package com.example.lab2g1h1091;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +13,10 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -29,10 +33,32 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Inflater de la AppBar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.appbar,menu);
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    // Opciones de AppBar
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.listarEmpleadosAppBar:
+                Toast.makeText(this,"listarEmpleadosAppBar",Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.agregarTrabajoAppBar:
+                Toast.makeText(this,"agregarTrabajoAppBar",Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void obtenerDeInternet(View view){

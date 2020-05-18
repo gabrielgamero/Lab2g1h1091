@@ -3,10 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/listarEmpleadosAppBar"
         android:icon="@drawable/ic_person"
         android:title="Listar Empleados"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/agregarTrabajoAppBar"
         android:icon="@drawable/ic_add"
         android:title="Agregar trabajo"
         app:showAsAction="ifRoom" />
