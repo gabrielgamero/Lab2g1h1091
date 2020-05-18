@@ -36,7 +36,7 @@ public class EmpleadoActivity extends AppCompatActivity {
         setTitle("Empleados");
     }
 
-    public void obtenerDeInternet(View view){
+    public void obtenerDeInternet2(View view){
         // URL Web service 7: Listar Empleados
         String url =
                 "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/empleados";
@@ -56,19 +56,16 @@ public class EmpleadoActivity extends AppCompatActivity {
                         Empleado[] listaEmpleados = dtoEmpleado.getEmpleados();
                         Log.d("listaEmpleados0",listaEmpleados[0].getFirstName());
 
-                        /*
                         // Creamos el Adapter
                         ListaEmpleadosAdapter listaEmpleadosAdapter =
                                 new ListaEmpleadosAdapter(listaEmpleados,EmpleadoActivity.this);
 
                         // Obtengamos la vista RecyclerView
-                        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+                        RecyclerView recyclerView = findViewById(R.id.recyclerView2);
                         // Configuramos el adapter al RecyclerView
                         recyclerView.setAdapter(listaEmpleadosAdapter);
                         // Configuramos el layoutManager al RecyclerView
                         recyclerView.setLayoutManager(new LinearLayoutManager(EmpleadoActivity.this));
-
-                         */
                     }
                 },
                 new Response.ErrorListener() {

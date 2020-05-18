@@ -25,8 +25,7 @@ public class ListaEmpleadosAdapter extends RecyclerView.Adapter<ListaEmpleadosAd
     }
 
     public static class EmpleadoViewHolder extends RecyclerView.ViewHolder{
-        TextView textViewFirstName;
-        TextView textViewLastName;
+        TextView textViewName;
         TextView textViewEmail;
         TextView textViewPhoneNumber;
         TextView textViewSalary;
@@ -34,8 +33,7 @@ public class ListaEmpleadosAdapter extends RecyclerView.Adapter<ListaEmpleadosAd
 
         public EmpleadoViewHolder(View itemView) {
             super(itemView);
-            textViewFirstName = itemView.findViewById(R.id.textViewFirstName);
-            textViewLastName = itemView.findViewById(R.id.textViewLastName);
+            textViewName = itemView.findViewById(R.id.textViewName); // FirstName y LastName en un TextView (textViewName)
             textViewEmail = itemView.findViewById(R.id.textViewEmail);
             textViewPhoneNumber = itemView.findViewById(R.id.textViewPhoneNumber);
             textViewSalary = itemView.findViewById(R.id.textViewSalary);
@@ -47,7 +45,7 @@ public class ListaEmpleadosAdapter extends RecyclerView.Adapter<ListaEmpleadosAd
     @Override
     public ListaEmpleadosAdapter.EmpleadoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Inflar el layout del item que se repetirá (y guardarlo en item)
-        View item = LayoutInflater.from(contexto).inflate(R.layout.item_rv,parent,false);
+        View item = LayoutInflater.from(contexto).inflate(R.layout.item_rv_empleado,parent,false);
         // Creamos el ViewHolder
         ListaEmpleadosAdapter.EmpleadoViewHolder empleadoViewHolder = new ListaEmpleadosAdapter.EmpleadoViewHolder(item);
         // Retornamos el ViewHolder
@@ -59,17 +57,15 @@ public class ListaEmpleadosAdapter extends RecyclerView.Adapter<ListaEmpleadosAd
         // Obtenemos el Empleado de la posicion ...
         Empleado e = listEmpleados[position];
         // Obtenemos los parámetros del Empleado:
-        String textoFirstName = Integer.toString(position) + " " + e.getFirstName();
-        holder.textViewFirstName.setText(textoFirstName);
-        String textoLastName = e.getLastName();
-        holder.textViewLastName.setText(textoLastName);
-        String textoEmail = e.getEmail();
+        String textoName = e.getFirstName() + " " + e.getLastName(); // FirstName y LastName en un TextView (textViewName)
+        holder.textViewName.setText(textoName);
+        String textoEmail = "Email: " + e.getEmail();
         holder.textViewEmail.setText(textoEmail);
         String textoPhoneNumber = e.getPhoneNumber();
         holder.textViewPhoneNumber.setText(textoPhoneNumber);
-        String textoSalary = Double.toString(e.getSalary());
+        String textoSalary = "Salario: " + e.getSalary();
         holder.textViewSalary.setText(textoSalary);
-        String textoCommisionPct = Double.toString(e.getCommisionPct());
+        String textoCommisionPct = "ComissionPct: " +  Double.toString(e.getCommisionPct());
         holder.textViewCommisionPct.setText(textoCommisionPct);
     }
 
