@@ -76,17 +76,21 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.buttonEditarTrabajo:
-
-                        //VERIFICACION PENDIENTE
                     String cadena = (String)textViewCreatedBy.getText();
                     if (cadena.equals("grupo_1") ) {
-                        Intent intent = new Intent(context,EditarTrabajoActivity.class);
-                        intent.putExtra("textViewJobTitle",textViewJobTitle.getText());
-                        context.startActivity(intent);
-                        break;
-                    }else{
+
+                    Intent intent = new Intent(context,EditarTrabajoActivity.class);
+                    intent.putExtra("textViewJobId",textViewJobId.getText());
+                    intent.putExtra("textViewJobTitle",textViewJobTitle.getText());
+                    intent.putExtra("textViewMinSalary",textViewMinSalary.getText());
+                    intent.putExtra("textViewMaxSalary",textViewMaxSalary.getText());
+                    //intent.putExtra("listatrabajos",listTrabajos);
+                    context.startActivity(intent);
+                    break;
+
+                     }else{
                         //FALTA COLOCAR DIALOG
-                        Toast.makeText(context,"Error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context,"No es posible editar", Toast.LENGTH_SHORT).show();
                         break;
                     }
 
@@ -138,7 +142,6 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
         // set events (buttons)
         //holder.buttonBorrarTrabajo.setOnClickListener(this);
         //holder.buttonEditarTrabajo.setOnClickListener(this);
-
 
 
         holder.setOnClickListeners();
