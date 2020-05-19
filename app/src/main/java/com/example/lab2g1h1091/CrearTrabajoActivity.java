@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -174,13 +175,20 @@ public class CrearTrabajoActivity extends AppCompatActivity {
                 @Override
                 public Map<String, String> getParams() throws AuthFailureError {
                     Map<String,String> parametros = new HashMap<>();
-                    parametros.put("api-key",apikey);
+                    //parametros.put("api-key",apikey);
                     parametros.put("jobId",jobId);
                     parametros.put("jobTitle",nombreTrabajo);
                     parametros.put("minSalary",salarioMin);
                     parametros.put("maxSalary",salarioMax);
 
                     return parametros;
+                }
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String,String> cabeceras = new HashMap<>();
+                    // Pasamos como cabecera el api-key [obtener el api-key desde android]
+                    cabeceras.put("api-key",apikey);
+                    return cabeceras;
                 }
             };
 

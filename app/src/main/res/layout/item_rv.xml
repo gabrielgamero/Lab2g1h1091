@@ -29,7 +29,7 @@
         android:text="textViewJobTitle"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/buttonEditar"
+        app:layout_constraintEnd_toStartOf="@+id/buttonEditarTrabajo"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.0" />
@@ -45,6 +45,8 @@
         app:layout_constraintEnd_toEndOf="@+id/textViewJobTitle"
         app:layout_constraintTop_toBottomOf="@+id/textViewJobTitle" />
 
+    <!--
+
     <TextView
         android:id="@+id/textViewSalaryRange"
         android:layout_width="wrap_content"
@@ -56,15 +58,15 @@
         app:layout_constraintStart_toEndOf="@+id/textViewJobId"
         app:layout_constraintTop_toTopOf="@+id/textViewJobId"
         app:layout_constraintVertical_bias="0.0" />
+    -->
 
-    <!--
     <TextView
         android:id="@+id/textViewMinSalary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:text="MinS"
-        android:textSize="12sp"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewJobId"
         app:layout_constraintStart_toEndOf="@+id/textViewJobId"
         app:layout_constraintTop_toTopOf="@+id/textViewJobId"
@@ -76,15 +78,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:text="MaxS"
-        android:textSize="12sp"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewMinSalary"
         app:layout_constraintStart_toEndOf="@+id/textViewMinSalary"
         app:layout_constraintTop_toTopOf="@+id/textViewMinSalary"
         app:layout_constraintVertical_bias="0.0" />
-        -->
 
     <Button
-        android:id="@+id/buttonBorrar"
+        android:id="@+id/buttonBorrarTrabajo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -94,14 +95,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonEditar"
+        android:id="@+id/buttonEditarTrabajo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:text="Editar"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonBorrar"
-        app:layout_constraintEnd_toStartOf="@+id/buttonBorrar"
-        app:layout_constraintTop_toTopOf="@+id/buttonBorrar"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonBorrarTrabajo"
+        app:layout_constraintEnd_toStartOf="@+id/buttonBorrarTrabajo"
+        app:layout_constraintTop_toTopOf="@+id/buttonBorrarTrabajo"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
