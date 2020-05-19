@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,11 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
         //TextView textViewMinSalary;
         //TextView textViewMaxSalary;
         TextView textViewSalaryRange;
+        //---------------------------------
+        //AGREGANDO EDUARDO
+        Button BtnEditar;
+        Button BtnBorrar;
+        //----------------------------------
 
         public TrabajoViewHolder(View itemView) {
             super(itemView);
@@ -40,6 +46,14 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
             // textViewMinSalary = itemView.findViewById(R.id.textViewMinSalary);
             // textViewMaxSalary = itemView.findViewById(R.id.textViewMaxSalary);
             textViewSalaryRange = itemView.findViewById(R.id.textViewSalaryRange);
+            //---------------------------------------------
+            //AGREGANDO EDUARDO
+            BtnEditar = (Button) itemView.findViewById(R.id.buttonEditar);
+            BtnBorrar = (Button) itemView.findViewById(R.id.buttonBorrar);
+
+            //---------------------------------------------
+
+
         }
     }
 
@@ -70,7 +84,17 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
         //holder.textViewMaxSalary.setText(textoMaxSalary);
         String textoSalaryRange = Integer.toString(t.getMinSalary()) + "-" + Integer.toString(t.getMaxSalary());
         holder.textViewSalaryRange.setText(textoSalaryRange);
+        //---------------------------------------------
+        //AGREGANDO EDUARDO
+        holder.BtnEditar.setOnClickListener(this);
+
+        //---------------------------------------------
+
+
     }
+
+
+
 
     @Override
     public int getItemCount() {
