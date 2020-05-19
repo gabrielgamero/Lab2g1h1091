@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     String apiKeyVar;
-
+    Trabajo[] listaTrabajos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,7 +110,9 @@ public class MainActivity extends AppCompatActivity {
                 // Abrir CrearTrabajoActivity desde la Appbar (Formulario para crear Trabajo)
                 Intent i = new Intent(this,CrearTrabajoActivity.class);
                 i.putExtra("apikey", apiKeyVar);
-                startActivity(i);
+                i.putExtra("lista_trabajos", listaTrabajos );
+                int requestCode = 2;
+                startActivityForResult(i,requestCode);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -147,7 +149,10 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("dtoTrabajo.getCuota",Integer.toString(dtoTrabajo.getCuota()));
 
                         // Obtener la lista de elementos
-                        Trabajo[] listaTrabajos = dtoTrabajo.getTrabajos();
+                         listaTrabajos = dtoTrabajo.getTrabajos();
+                        //---
+
+                        //---
                         Log.d("listaTrabajos0",listaTrabajos[0].getJobTitle());
 
                         // Creamos el Adapter
