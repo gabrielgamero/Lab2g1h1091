@@ -1,6 +1,7 @@
 package com.example.lab2g1h1091;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,11 +28,15 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
         this.contexto = c;
     }
 
-    public static class TrabajoViewHolder extends RecyclerView.ViewHolder{
+    public static class TrabajoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        //context
+        Context context;
+
         TextView textViewJobTitle;
         TextView textViewJobId;
-        //TextView textViewMinSalary;
-        //TextView textViewMaxSalary;
+        TextView textViewMinSalary;
+        TextView textViewMaxSalary;
         TextView textViewSalaryRange;
         //---------------------------------
         //AGREGANDO EDUARDO
@@ -39,20 +44,45 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
         Button BtnBorrar;
         //----------------------------------
 
+        //buttons
+        Button  buttonEditarTrabajo;
+        Button buttonBorrarTrabajo;
+
         public TrabajoViewHolder(View itemView) {
             super(itemView);
+            // inicializar contexto
+            context = itemView.getContext();
+
             textViewJobTitle = itemView.findViewById(R.id.textViewJobTitle);
             textViewJobId = itemView.findViewById(R.id.textViewJobId);
-            // textViewMinSalary = itemView.findViewById(R.id.textViewMinSalary);
-            // textViewMaxSalary = itemView.findViewById(R.id.textViewMaxSalary);
-            textViewSalaryRange = itemView.findViewById(R.id.textViewSalaryRange);
-            //---------------------------------------------
-            //AGREGANDO EDUARDO
-            BtnEditar = (Button) itemView.findViewById(R.id.buttonEditar);
-            BtnBorrar = (Button) itemView.findViewById(R.id.buttonBorrar);
 
-            //---------------------------------------------
+            textViewMinSalary = itemView.findViewById(R.id.textViewMinSalary);
+            textViewMaxSalary = itemView.findViewById(R.id.textViewMaxSalary);
 
+            //Referencia a botones:
+            buttonEditarTrabajo = itemView.findViewById(R.id.buttonEditarTrabajo);
+            buttonBorrarTrabajo = itemView.findViewById(R.id.buttonBorrarTrabajo);
+        }
+
+        void setOnClickListeners(){
+            buttonEditarTrabajo.setOnClickListener(this);
+            buttonBorrarTrabajo.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.buttonEditarTrabajo:
+                    Intent intent = new Intent(context,EditarTrabajoActivity.class);
+                    intent.putExtra("textViewJobTitle",textViewJobTitle.getText());
+                    context.startActivity(intent);
+                    break;
+                case R.id.buttonBorrarTrabajo:
+                    intent = new Intent(context,BorrarTrabajoActivity.class);
+                    intent.putExtra("textViewJobTitle",textViewJobTitle.getText());
+                    context.startActivity(intent);
+                    break;
+            }
 
         }
     }
@@ -73,25 +103,25 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
         // Obtenemos el Trabajo de la posicion ...
         Trabajo t = listTrabajos[position];
         // Obtenemos los parámetros del trabajo:
-        String texto = Integer.toString(position) + " " + t.getJobTitle();
+        //String texto = Integer.toString(position) + " " + t.getJobTitle();
+        String texto = t.getJobTitle();
         holder.textViewJobTitle.setText(texto);
 
         String textoJobId = t.getJobId();
         holder.textViewJobId.setText(textoJobId);
-        //String textoMinSalary = Integer.toString(t.getMinSalary());
-        //holder.textViewMinSalary.setText(textoMinSalary);
-        //String textoMaxSalary = Integer.toString(t.getMaxSalary());
-        //holder.textViewMaxSalary.setText(textoMaxSalary);
-        String textoSalaryRange = Integer.toString(t.getMinSalary()) + "-" + Integer.toString(t.getMaxSalary());
-        holder.textViewSalaryRange.setText(textoSalaryRange);
-        //---------------------------------------------
 
+        String textoMinSalary = Integer.toString(t.getMinSalary());
+        holder.textViewMinSalary.setText(textoMinSalary);
+    String textoMaxSalary = Integer.toString(t.getMaxSalary());
+        holder.textViewMaxSalary.setText(textoMaxSalary);
+    //String textoSalaryRange = Integer.toString(t.getMinSalary()) + "-" + Integer.toString(t.getMaxSalary());
+    //holder.textViewSalaryRange.setText(textoSalaryRange);
 
-        //---------------------------------------------
-
-
+    // set events (buttons)
+    //holder.buttonBorrarTrabajo.setOnClickListener(this);
+    //holder.buttonEditarTrabajo.setOnClickListener(this);
+        holder.setOnClickListeners();
     }
-
 
 
 
