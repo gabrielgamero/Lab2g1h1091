@@ -1,7 +1,6 @@
 package com.example.lab2g1h1091;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,72 +25,27 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.lab2g1h1091.entidades.DtoTrabajo;
-import com.example.lab2g1h1091.entidades.Trabajo;
+import com.example.lab2g1h1091.entidades.DtoEmpleado;
+import com.example.lab2g1h1091.entidades.Empleado;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 
-import entidades.Apikey;
+public class EmpleadoActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
-
-    // Inflater de la AppBar
+    // Inflater de la AppBar para Empleado
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.appbar,menu);
+        getMenuInflater().inflate(R.menu.appbar_empleado,menu);
         return true;
     }
 
-    String apiKeyVar;
-    Trabajo[] listaTrabajos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        setTitle("Trabajos");
-
-        // GetApi
-        String url = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/getApiKey?accion=validar";
-
-        StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("resul", response);
-                        Gson gson = new Gson();
-                        Apikey api = gson.fromJson(response,Apikey.class);
-                        apiKeyVar = api.getApikey();
-                        /*
-                        Intent i = new Intent(MainActivity.this, CrearTrabajoActivity.class);
-                        i.putExtra("apikey", apiKeyVar);
-                        startActivity(i);
-                         */
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("errorVol", error.getMessage());
-                    }
-                }) {
-            @Override
-            public Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> parametros = new HashMap<>();
-                parametros.put("groupKey","dUSsj7jpKkbK9yADK8Eb");
-                return parametros;
-            }
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-        requestQueue.add(stringRequest);
+        setContentView(R.layout.activity_empleado);
+        setTitle("Empleados");
     }
 
     // Opciones de AppBar
@@ -99,43 +53,35 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
-            /*
-            case R.id.listarEmpleadosAppBar:
-                Toast.makeText(this,"listarEmpleadosAppBar",Toast.LENGTH_SHORT).show();
-                return true;
-             */
-            case R.id.agregarTrabajoAppBar:
-                //Toast.makeText(this,"agregarTrabajoAppBar",Toast.LENGTH_SHORT).show();
-
-                // Abrir CrearTrabajoActivity desde la Appbar (Formulario para crear Trabajo)
-                Intent i = new Intent(this,CrearTrabajoActivity.class);
-                i.putExtra("apikey", apiKeyVar);
-                i.putExtra("lista_trabajos", listaTrabajos );
-                int requestCode = 2;
-                startActivityForResult(i,requestCode);
+            //case R.id.listarEmpleadosAppBar:
+            //    Toast.makeText(this,"listarEmpleadosAppBar",Toast.LENGTH_SHORT).show();
+            //   return true;
+            case R.id.agregarEmpleadoAppBar:
+                Toast.makeText(this,"agregarEmpleadoAppBar",Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    // Abrir EmpleadoActivity (asociar en onClick de la vista)
-    public void accionListarEmpleadosAppBar(MenuItem item){
-        // Creando una nueva Activity de EmpleadoActivity
+    // Abrir MainActivity (asociar en onClick de la vista)
+    public void accionListarTrabajosAppBar(MenuItem item){
+        // Creando una nueva Activity de MainActivity
         /*
-        Intent i = new Intent(this,EmpleadoActivity.class);
+        Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
          */
 
-        // Creando una nueva Activity de EmpleadoActivity esperando retorno
-        Intent i = new Intent(MainActivity.this,EmpleadoActivity.class);
-        int requestCode = 1;
-        startActivityForResult(i,requestCode);
+        // Regresar a MainActivity pero finalizar esta Activity de EmpleadoActivity
+        //Intent i = new Intent();
+        Intent i = new Intent(EmpleadoActivity.this,MainActivity.class);
+        setResult(RESULT_OK,i);
+        finish();
     }
 
-    public void obtenerDeInternet(View view){
-        // URL Web service 2: Listar Trabajos
+    public void obtenerDeInternet2(View view){
+        // URL Web service 7: Listar Empleados
         String url =
-                "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/trabajos";
+                "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/empleados";
 
         StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, url,
                 new Response.Listener<String>() {
@@ -145,26 +91,23 @@ public class MainActivity extends AppCompatActivity {
 
                         // Convertir los datos en formato json (response) a una clase en Java con Gson
                         Gson gson = new Gson();
-                        DtoTrabajo dtoTrabajo = gson.fromJson(response,DtoTrabajo.class);
-                        Log.d("dtoTrabajo.getCuota",Integer.toString(dtoTrabajo.getCuota()));
+                        DtoEmpleado dtoEmpleado = gson.fromJson(response,DtoEmpleado.class);
+                        Log.d("dtoEmpleado.getCuota",Integer.toString(dtoEmpleado.getCuota()));
 
                         // Obtener la lista de elementos
-                         listaTrabajos = dtoTrabajo.getTrabajos();
-                        //---
-
-                        //---
-                        Log.d("listaTrabajos0",listaTrabajos[0].getJobTitle());
+                        Empleado[] listaEmpleados = dtoEmpleado.getEmpleados();
+                        Log.d("listaEmpleados0",listaEmpleados[0].getFirstName());
 
                         // Creamos el Adapter
-                        ListaTrabajosAdapter listaTrabajosAdapter =
-                                new ListaTrabajosAdapter(listaTrabajos,MainActivity.this);
+                        ListaEmpleadosAdapter listaEmpleadosAdapter =
+                                new ListaEmpleadosAdapter(listaEmpleados,EmpleadoActivity.this);
 
                         // Obtengamos la vista RecyclerView
-                        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+                        RecyclerView recyclerView = findViewById(R.id.recyclerView2);
                         // Configuramos el adapter al RecyclerView
-                        recyclerView.setAdapter(listaTrabajosAdapter);
+                        recyclerView.setAdapter(listaEmpleadosAdapter);
                         // Configuramos el layoutManager al RecyclerView
-                        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                        recyclerView.setLayoutManager(new LinearLayoutManager(EmpleadoActivity.this));
                     }
                 },
                 new Response.ErrorListener() {
@@ -181,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String,String> cabeceras = new HashMap<>();
                 // Pasamos como cabecera el api-key [obtener el api-key desde android]
-                cabeceras.put("api-key",apiKeyVar);
+                cabeceras.put("api-key","HTUxbtfKpEb2GJ3Y2d9e");
                 return cabeceras;
             }
         };
@@ -220,7 +163,5 @@ public class MainActivity extends AppCompatActivity {
             if (activeNetworkInfo.getType() == ConnectivityManager.TYPE_ETHERNET) return true;
             return false;
         }
-
     }
 }
-
