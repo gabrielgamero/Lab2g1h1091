@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,19 +38,19 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
         TextView textViewJobId;
         TextView textViewMinSalary;
         TextView textViewMaxSalary;
+        TextView textViewCreatedBy;
         TextView textViewSalaryRange;
-        //---------------------------------
-        //AGREGANDO EDUARDO
-        Button BtnEditar;
-        Button BtnBorrar;
-        //----------------------------------
 
         //buttons
         Button  buttonEditarTrabajo;
         Button buttonBorrarTrabajo;
 
+
+
         public TrabajoViewHolder(View itemView) {
             super(itemView);
+
+
             // inicializar contexto
             context = itemView.getContext();
 
@@ -58,31 +59,40 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
 
             textViewMinSalary = itemView.findViewById(R.id.textViewMinSalary);
             textViewMaxSalary = itemView.findViewById(R.id.textViewMaxSalary);
-
+            textViewCreatedBy = itemView.findViewById(R.id.textViewCreatedBy);
             //Referencia a botones:
             buttonEditarTrabajo = itemView.findViewById(R.id.buttonEditarTrabajo);
             buttonBorrarTrabajo = itemView.findViewById(R.id.buttonBorrarTrabajo);
         }
 
         void setOnClickListeners(){
-            buttonEditarTrabajo.setOnClickListener(this);
-            buttonBorrarTrabajo.setOnClickListener(this);
+
+                buttonEditarTrabajo.setOnClickListener(this);
+                buttonBorrarTrabajo.setOnClickListener(this);
+
         }
 
         @Override
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.buttonEditarTrabajo:
-                    Intent intent = new Intent(context,EditarTrabajoActivity.class);
-                    intent.putExtra("textViewJobId",textViewJobId.getText());
-                    intent.putExtra("textViewJobTitle",textViewJobTitle.getText());
-                    intent.putExtra("textViewMinSalary",textViewMinSalary.getText());
-                    intent.putExtra("textViewMaxSalary",textViewMaxSalary.getText());
-                    //intent.putExtra("listatrabajos",listTrabajos);
-                    context.startActivity(intent);
-                    break;
+
+                        //VERIFICACION PENDIENTE
+                    String cadena = (String)textViewCreatedBy.getText();
+                    if (cadena.equals("grupo_1") ) {
+                        Intent intent = new Intent(context,EditarTrabajoActivity.class);
+                        intent.putExtra("textViewJobTitle",textViewJobTitle.getText());
+                        context.startActivity(intent);
+                        break;
+                    }else{
+                        //FALTA COLOCAR DIALOG
+                        Toast.makeText(context,"Error", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+
+
                 case R.id.buttonBorrarTrabajo:
-                    intent = new Intent(context,BorrarTrabajoActivity.class);
+                    Intent intent = new Intent(context,BorrarTrabajoActivity.class);
                     intent.putExtra("textViewJobTitle",textViewJobTitle.getText());
                     context.startActivity(intent);
                     break;
@@ -118,12 +128,19 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
         holder.textViewMinSalary.setText(textoMinSalary);
     String textoMaxSalary = Integer.toString(t.getMaxSalary());
         holder.textViewMaxSalary.setText(textoMaxSalary);
-    //String textoSalaryRange = Integer.toString(t.getMinSalary()) + "-" + Integer.toString(t.getMaxSalary());
-    //holder.textViewSalaryRange.setText(textoSalaryRange);
 
-    // set events (buttons)
-    //holder.buttonBorrarTrabajo.setOnClickListener(this);
-    //holder.buttonEditarTrabajo.setOnClickListener(this);
+
+        String createdBy = t.getCreatedBy();
+        holder.textViewCreatedBy.setText(createdBy);
+        //String textoSalaryRange = Integer.toString(t.getMinSalary()) + "-" + Integer.toString(t.getMaxSalary());
+        //holder.textViewSalaryRange.setText(textoSalaryRange);
+
+        // set events (buttons)
+        //holder.buttonBorrarTrabajo.setOnClickListener(this);
+        //holder.buttonEditarTrabajo.setOnClickListener(this);
+
+
+
         holder.setOnClickListeners();
     }
 
