@@ -85,8 +85,7 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
         String textoSalaryRange = Integer.toString(t.getMinSalary()) + "-" + Integer.toString(t.getMaxSalary());
         holder.textViewSalaryRange.setText(textoSalaryRange);
         //---------------------------------------------
-        //AGREGANDO EDUARDO
-        holder.BtnEditar.setOnClickListener(this);
+
 
         //---------------------------------------------
 
