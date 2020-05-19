@@ -1,10 +1,14 @@
 package entidades;
 
+import androidx.annotation.NonNull;
+
 public class Departamento {
     private String departmentId;
     private String departmentName;
     private String managerId;
     private String locationId;
+
+
     private String departmentShortName;
 
     public String getDepartmentId() {

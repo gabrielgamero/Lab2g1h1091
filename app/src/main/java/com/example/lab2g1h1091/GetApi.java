@@ -3,6 +3,7 @@ package com.example.lab2g1h1091;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -11,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -47,10 +49,10 @@ public class GetApi extends AppCompatActivity {
                         Log.d("resul", response);
                         Gson gson = new Gson();
                         Apikey api = gson.fromJson(response,Apikey.class);
-                        //Log.d("resul", api.getApikey());
-                        TextView textView  = findViewById(R.id.textView);
-                        textView.setText(api.getApi());
-                        Log.e("resul", api.getEstado());
+                        String apikey = api.getApikey();
+                        Intent i = new Intent(GetApi.this, CrearTrabajo.class);
+                        i.putExtra("apikey", apikey);
+                        startActivity(i);
 
 
                     }
@@ -81,6 +83,11 @@ public class GetApi extends AppCompatActivity {
 
 
 
+
+    public void abrirMain(View view) {
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
+    }
 
 
 

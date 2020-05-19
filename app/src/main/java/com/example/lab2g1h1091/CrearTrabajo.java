@@ -2,6 +2,7 @@ package com.example.lab2g1h1091;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +17,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import entidades.Departamento;
@@ -24,35 +27,35 @@ import entidades.DtoDepartamento;
 
 public class CrearTrabajo extends AppCompatActivity {
 
-
-     @Override
+String apikey;
+   @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_trabajo);
+        Intent intent = getIntent();
+         apikey = intent.getStringExtra("apikey");
 
-         String url = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/departamentos";
+       String url = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/departamentos";
 
          StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, url,
                  new Response.Listener<String>() {
                      @Override
                      public void onResponse(String response) {
                          Log.d("exitoVol", response);
-                         Gson gson = new Gson();
-                         DtoDepartamento dtoDepartamento = gson.fromJson(response,DtoDepartamento.class);
-                         Departamento[] listaDepartamentos = dtoDepartamento.getLista();
+                         //Log.d("apikey", apikey);
 
-                        // ArrayAdapter<Departamento> adapter = new ArrayAdapter<Departamento>(this,android.R.layout.simple_spinner_dropdown_item,listaDepartamentos);
-
-                         Spinner spinner = findViewById(R.id.spinner_dep);
-
-
-
-                         //ListaEmpleadosAdapter listaEmpleadosAdapter =
-                         //        new ListaEmpleadosAdapter(listaEmpleados,InternetActivity.this);
-
-                         //RecyclerView recyclerView = findViewById(R.id.recyclerView);
-                         //recyclerView.setAdapter(listaEmpleadosAdapter);
-                         // recyclerView.setLayoutManager(new LinearLayoutManager(InternetActivity.this));
+                             Gson gson = new Gson();
+                             DtoDepartamento dtoDepartamento = gson.fromJson(response,DtoDepartamento.class);
+                             Departamento[] listaDepartamentos = dtoDepartamento.getDepartamentos();
+                             String[] listaDepartNames = new String[listaDepartamentos.length];
+                             int i = 0;
+                             for(Departamento depa:listaDepartamentos){
+                                 listaDepartNames[i] = depa.getDepartmentName();
+                                 i = i +1 ;
+                             }
+                             ArrayAdapter<String> adapter = new ArrayAdapter<String>(CrearTrabajo.this,android.R.layout.simple_spinner_dropdown_item,listaDepartNames);
+                             Spinner spinner = findViewById(R.id.spinner_dep);
+                             spinner.setAdapter(adapter);
 
 
                      }
@@ -66,7 +69,7 @@ public class CrearTrabajo extends AppCompatActivity {
              @Override
              public Map<String, String> getHeaders() throws AuthFailureError {
                  Map<String,String> cabeceras = new HashMap<>();
-                 cabeceras.put("api-key","HTUxbtfKpEb2GJ3Y2d9e");
+                 cabeceras.put("api-key",apikey);
                  return cabeceras;
              }
          };

@@ -21,15 +21,16 @@ public class DtoDepartamento {
         this.cuota = cuota;
     }
 
-    public Departamento[] getLista() {
-        return lista;
+
+    public Departamento[] getDepartamentos() {
+        return departamentos;
     }
 
-    public void setLista(Departamento[] lista) {
-        this.lista = lista;
+    public void setDepartamentos(Departamento[] departamentos) {
+        this.departamentos = departamentos;
     }
 
-    private Departamento[] lista;
+    private Departamento[] departamentos;
 
 
 }

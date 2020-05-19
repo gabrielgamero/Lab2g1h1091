@@ -1,21 +1,27 @@
 package entidades;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.text.StringCharacterIterator;
 
 public class Apikey<key> {
     private String estado;
     private String cuota;
+    @SerializedName(value = "api-key")
+    private String apikey;
 
 
-    public String getApi() {
-        return api;
+    public String getApikey() {
+        return apikey;
     }
 
-    public void setApi(String api) {
-        this.api = api;
+    public void setApikey(String apikey) {
+        this.apikey = apikey;
     }
 
-    private String api;
+
+
+
 
     public String getEstado() {
         return estado;
