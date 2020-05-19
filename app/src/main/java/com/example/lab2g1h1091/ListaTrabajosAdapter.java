@@ -74,7 +74,11 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
             switch (view.getId()){
                 case R.id.buttonEditarTrabajo:
                     Intent intent = new Intent(context,EditarTrabajoActivity.class);
+                    intent.putExtra("textViewJobId",textViewJobId.getText());
                     intent.putExtra("textViewJobTitle",textViewJobTitle.getText());
+                    intent.putExtra("textViewMinSalary",textViewMinSalary.getText());
+                    intent.putExtra("textViewMaxSalary",textViewMaxSalary.getText());
+                    //intent.putExtra("listatrabajos",listTrabajos);
                     context.startActivity(intent);
                     break;
                 case R.id.buttonBorrarTrabajo:
