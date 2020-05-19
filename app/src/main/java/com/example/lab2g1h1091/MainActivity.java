@@ -58,7 +58,11 @@ public class MainActivity extends AppCompatActivity {
             //    Toast.makeText(this,"listarEmpleadosAppBar",Toast.LENGTH_SHORT).show();
              //   return true;
             case R.id.agregarTrabajoAppBar:
-                Toast.makeText(this,"agregarTrabajoAppBar",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"agregarTrabajoAppBar",Toast.LENGTH_SHORT).show();
+
+                // Abrir CrearTrabajoActivity desde la Appbar (Formulario para crear Trabajo)
+                Intent i = new Intent(this,CrearTrabajoActivity.class);
+                startActivity(i);
                 return true;
         }
         return super.onOptionsItemSelected(item);
