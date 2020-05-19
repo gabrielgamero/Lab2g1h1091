@@ -38,6 +38,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import entidades.Apikey;
+
 public class MainActivity extends AppCompatActivity {
 
     // Inflater de la AppBar
@@ -47,11 +49,49 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    String apiKeyVar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Trabajos");
+
+        // GetApi
+        String url = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/getApiKey?accion=validar";
+
+        StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("resul", response);
+                        Gson gson = new Gson();
+                        Apikey api = gson.fromJson(response,Apikey.class);
+                        apiKeyVar = api.getApikey();
+                        /*
+                        Intent i = new Intent(MainActivity.this, CrearTrabajoActivity.class);
+                        i.putExtra("apikey", apiKeyVar);
+                        startActivity(i);
+                         */
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("errorVol", error.getMessage());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> parametros = new HashMap<>();
+                parametros.put("groupKey","dUSsj7jpKkbK9yADK8Eb");
+                return parametros;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        requestQueue.add(stringRequest);
     }
 
     // Opciones de AppBar
@@ -59,14 +99,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
-            //case R.id.listarEmpleadosAppBar:
-            //    Toast.makeText(this,"listarEmpleadosAppBar",Toast.LENGTH_SHORT).show();
-             //   return true;
+            /*
+            case R.id.listarEmpleadosAppBar:
+                Toast.makeText(this,"listarEmpleadosAppBar",Toast.LENGTH_SHORT).show();
+                return true;
+             */
             case R.id.agregarTrabajoAppBar:
                 //Toast.makeText(this,"agregarTrabajoAppBar",Toast.LENGTH_SHORT).show();
 
                 // Abrir CrearTrabajoActivity desde la Appbar (Formulario para crear Trabajo)
                 Intent i = new Intent(this,CrearTrabajoActivity.class);
+                i.putExtra("apikey", apiKeyVar);
                 startActivity(i);
                 return true;
         }
@@ -85,11 +128,6 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(MainActivity.this,EmpleadoActivity.class);
         int requestCode = 1;
         startActivityForResult(i,requestCode);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     public void obtenerDeInternet(View view){
@@ -138,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String,String> cabeceras = new HashMap<>();
                 // Pasamos como cabecera el api-key [obtener el api-key desde android]
-                cabeceras.put("api-key","HTUxbtfKpEb2GJ3Y2d9e");
+                cabeceras.put("api-key",apiKeyVar);
                 return cabeceras;
             }
         };
