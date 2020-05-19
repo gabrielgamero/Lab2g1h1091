@@ -32,6 +32,11 @@ import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -172,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
             if (activeNetworkInfo.getType() == ConnectivityManager.TYPE_ETHERNET) return true;
             return false;
         }
+
     }
 }
 
