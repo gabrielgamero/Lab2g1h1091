@@ -14,6 +14,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.lab2g1h1091.entidades.DtoEmpleado;
+import com.example.lab2g1h1091.entidades.DtoTrabajo;
+import com.example.lab2g1h1091.entidades.Empleado;
+import com.example.lab2g1h1091.entidades.Trabajo;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -26,6 +30,9 @@ public class CrearEmpleadoActivity extends AppCompatActivity {
 
     String apikey;
     Departamento[] listaDepartamentos;
+    Trabajo[] listaTrabajos;
+    Empleado[] listaEmpleados;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,11 +81,95 @@ public class CrearEmpleadoActivity extends AppCompatActivity {
             }
         };
 
+
+        String url2 =
+                "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/trabajos";
+
+        StringRequest trabajoRequest = new StringRequest(StringRequest.Method.GET, url2,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("exitoVol", response);
+                        //Log.d("apikey", apikey);
+
+                        Gson gson = new Gson();
+                        DtoTrabajo dtoTrabajo = gson.fromJson(response, DtoTrabajo.class);
+                        listaTrabajos = dtoTrabajo.getTrabajos();
+                        String[] listaTrabajoNames = new String[listaTrabajos.length];
+                        int t = 0;
+                        for (Trabajo trabajo : listaTrabajos) {
+                            listaTrabajoNames[t] = trabajo.getJobTitle();
+                            t = t + 1;
+                        }
+                        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(CrearEmpleadoActivity.this,
+                                android.R.layout.simple_spinner_dropdown_item, listaTrabajoNames);
+                        Spinner spinner = findViewById(R.id.spinnerTrabajo);
+                        spinner.setAdapter(adapter2);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("errorVol", error.getMessage());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> cabeceras = new HashMap<>();
+                cabeceras.put("api-key", apikey);
+                return cabeceras;
+            }
+        };
+
+
+        String url3 =
+                "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/empleados";
+
+        StringRequest empleadoRequest = new StringRequest(StringRequest.Method.GET, url3,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("exitoVol", response);
+                        //Log.d("apikey", apikey);
+
+                        Gson gson = new Gson();
+                        DtoEmpleado dtoEmpleado = gson.fromJson(response, DtoEmpleado.class);
+                        listaEmpleados = dtoEmpleado.getEmpleados();
+                        String[] listaEmpleadosNames = new String[listaEmpleados.length];
+                        int h = 0;
+                        for (Empleado empleado : listaEmpleados) {
+                            listaEmpleadosNames[h] = empleado.getFirstName() + " " + empleado.getLastName();
+                            h = h + 1;
+                        }
+                        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(CrearEmpleadoActivity.this,
+                                android.R.layout.simple_spinner_dropdown_item, listaEmpleadosNames);
+                        Spinner spinner = findViewById(R.id.spinnerJefe);
+                        spinner.setAdapter(adapter3);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("errorVol", error.getMessage());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> cabeceras = new HashMap<>();
+                cabeceras.put("api-key", apikey);
+                return cabeceras;
+            }
+        };
+
+
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         requestQueue.add(stringRequest);
-
-
+        requestQueue.add(trabajoRequest);
+        requestQueue.add(empleadoRequest);
 
 
     }
