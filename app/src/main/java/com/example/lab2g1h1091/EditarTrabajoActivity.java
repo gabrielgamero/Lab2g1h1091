@@ -16,14 +16,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.lab2g1h1091.entidades.ResultTrabajo;
-import com.example.lab2g1h1091.entidades.Trabajo;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import entidades.Apikey;
-import entidades.Departamento;
 
 public class EditarTrabajoActivity extends AppCompatActivity {
     String apiKeyVar;
@@ -47,9 +45,9 @@ public class EditarTrabajoActivity extends AppCompatActivity {
 
         TextView textViewJobTitleEditar = findViewById(R.id.textViewJobTitleEditar);
 
-        TextView textViewJobTitle_Editar = findViewById(R.id.textViewJob);
-        TextView textViewMinSalEditar = findViewById(R.id.textViewMinSal);
-        TextView textViewMaxSalEditar = findViewById(R.id.textViewMaxSal);
+        TextView textViewJobTitle_Editar = findViewById(R.id.textViewFirstName);
+        TextView textViewMinSalEditar = findViewById(R.id.textViewLastName);
+        TextView textViewMaxSalEditar = findViewById(R.id.textViewEmail);
 
         textViewJobTitleEditar.setText(textViewJobTitle);
 
@@ -99,9 +97,9 @@ public class EditarTrabajoActivity extends AppCompatActivity {
     public void btnEditarTrabajo(View view) {
 
 
-        EditText editTextNombre = findViewById(R.id.textViewJob);
-        EditText editTextSalarioMin = findViewById(R.id.textViewMinSal);
-        EditText editTextSalarioMax = findViewById(R.id.textViewMaxSal);
+        EditText editTextNombre = findViewById(R.id.textViewFirstName);
+        EditText editTextSalarioMin = findViewById(R.id.textViewLastName);
+        EditText editTextSalarioMax = findViewById(R.id.textViewEmail);
 
         final String nombreTrabajo = editTextNombre.getText().toString();
         final String salarioMin = editTextSalarioMin.getText().toString();

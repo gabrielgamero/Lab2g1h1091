@@ -1,10 +1,13 @@
 package com.example.lab2g1h1091;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,21 +27,98 @@ public class ListaEmpleadosAdapter extends RecyclerView.Adapter<ListaEmpleadosAd
         this.contexto = c;
     }
 
-    public static class EmpleadoViewHolder extends RecyclerView.ViewHolder{
-        TextView textViewName;
+    public static class EmpleadoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        Context context;
+
+        TextView textViewEmployeeId;
+        TextView textViewFirstName;
+        TextView textViewLastName;
         TextView textViewEmail;
         TextView textViewPhoneNumber;
         TextView textViewSalary;
         TextView textViewCommisionPct;
+        TextView textViewCreatedBy;
+        Button editButton;
+        Button borrarButton;
+
+
 
         public EmpleadoViewHolder(View itemView) {
             super(itemView);
-            textViewName = itemView.findViewById(R.id.textViewName); // FirstName y LastName en un TextView (textViewName)
+
+            context = itemView.getContext();
+            textViewEmployeeId = itemView.findViewById(R.id.textViewEmployeeId);
+            textViewFirstName = itemView.findViewById(R.id.textViewFirstName); // FirstName y LastName en un TextView (textViewName)
+            textViewLastName = itemView.findViewById(R.id.textViewLastName); // FirstName y LastName en un TextView (textViewName)
             textViewEmail = itemView.findViewById(R.id.textViewEmail);
             textViewPhoneNumber = itemView.findViewById(R.id.textViewPhoneNumber);
             textViewSalary = itemView.findViewById(R.id.textViewSalary);
             textViewCommisionPct = itemView.findViewById(R.id.textViewCommisionPct);
+            textViewCreatedBy = itemView.findViewById(R.id.textViewEmployeeId);
+
+            editButton = itemView.findViewById(R.id.buttonEditar);
+            borrarButton = itemView.findViewById(R.id.buttonBorrar);
+
         }
+
+        void setOnClickListeners(){
+
+            editButton.setOnClickListener(this);
+            borrarButton.setOnClickListener(this);
+
+        }
+
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.buttonEditar:
+                    String cadena = (String)textViewCreatedBy.getText();
+                    if (cadena.equals("grupo_1") ) {
+
+                        Intent intent = new Intent(context,EditarEmpleadoActivity.class);
+
+                        intent.putExtra("textViewEmployeeId",textViewEmployeeId.getText());
+                        intent.putExtra("textViewEmployeeId",textViewFirstName.getText());
+                        intent.putExtra("textViewEmployeeId",textViewLastName.getText());
+                        intent.putExtra("textViewEmployeeId",textViewEmail.getText());
+                        intent.putExtra("textViewEmployeeId",textViewPhoneNumber.getText());
+                        intent.putExtra("textViewEmployeeId",textViewSalary.getText());
+                        intent.putExtra("textViewEmployeeId",textViewCommisionPct.getText());
+                        intent.putExtra("textViewEmployeeId",textViewCreatedBy.getText());
+
+
+
+                        context.startActivity(intent);
+                        break;
+
+                    }else{
+                        //FALTA COLOCAR DIALOG
+                        Toast.makeText(context,"No es posible editar", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+
+
+                case R.id.buttonBorrar:
+                    cadena = (String)textViewCreatedBy.getText();
+                    if (cadena.equals("grupo_1") ) {
+
+                        break;
+
+                    }else{
+                        //FALTA COLOCAR DIALOG
+                        Toast.makeText(context,"No es posible borrar", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+
+            }
+
+        }
+
+
+
+
     }
 
     @NonNull
@@ -57,16 +137,33 @@ public class ListaEmpleadosAdapter extends RecyclerView.Adapter<ListaEmpleadosAd
         // Obtenemos el Empleado de la posicion ...
         Empleado e = listEmpleados[position];
         // Obtenemos los parámetros del Empleado:
-        String textoName = e.getFirstName() + " " + e.getLastName(); // FirstName y LastName en un TextView (textViewName)
-        holder.textViewName.setText(textoName);
-        String textoEmail = "Email: " + e.getEmail();
+
+        String textoId= e.getEmployeeId();
+        holder.textViewEmployeeId.setText(textoId);
+        String textoFirstName = e.getFirstName();
+        holder.textViewFirstName.setText(textoFirstName);
+
+        String textoLastName = e.getLastName();
+        holder.textViewLastName.setText(textoLastName);
+
+        String textoEmail = e.getEmail();
         holder.textViewEmail.setText(textoEmail);
         String textoPhoneNumber = e.getPhoneNumber();
         holder.textViewPhoneNumber.setText(textoPhoneNumber);
-        String textoSalary = "Salario: " + e.getSalary();
+        String textoSalary = Double.toString(e.getSalary());
         holder.textViewSalary.setText(textoSalary);
-        String textoCommisionPct = "ComissionPct: " +  Double.toString(e.getCommisionPct());
+        String textoCommisionPct = Double.toString(e.getCommisionPct());
         holder.textViewCommisionPct.setText(textoCommisionPct);
+
+        String createdBy = e.getCreatedBy();
+        holder.textViewCreatedBy.setText(createdBy);
+
+
+
+        holder.setOnClickListeners();
+
+
+
     }
 
     @Override
