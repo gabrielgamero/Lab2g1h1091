@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CrearEmpleadoActivity"></activity>
+        <activity android:name=".CrearEmpleadoActivity"
+            android:parentActivityName=".EmpleadoActivity"></activity>
         <activity android:name=".EditarTrabajoActivity" />
         <activity android:name=".BorrarTrabajoActivity" />
         <activity

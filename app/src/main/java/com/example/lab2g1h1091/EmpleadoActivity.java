@@ -57,7 +57,11 @@ public class EmpleadoActivity extends AppCompatActivity {
             //    Toast.makeText(this,"listarEmpleadosAppBar",Toast.LENGTH_SHORT).show();
             //   return true;
             case R.id.agregarEmpleadoAppBar:
-                Toast.makeText(this,"agregarEmpleadoAppBar",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(this,CrearEmpleadoActivity.class);
+                //i.putExtra("apikey", apiKeyVar);
+                //i.putExtra("lista_trabajos", listaTrabajos );
+                int requestCode = 2;
+                startActivityForResult(i,requestCode);
                 return true;
         }
         return super.onOptionsItemSelected(item);
