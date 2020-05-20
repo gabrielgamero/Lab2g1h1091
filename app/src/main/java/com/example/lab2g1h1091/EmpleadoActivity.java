@@ -167,7 +167,7 @@ public class EmpleadoActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String,String> cabeceras = new HashMap<>();
                 // Pasamos como cabecera el api-key [obtener el api-key desde android]
-                cabeceras.put("api-key","HTUxbtfKpEb2GJ3Y2d9e");
+                cabeceras.put("api-key",apiKeyVar);
                 return cabeceras;
             }
         };
