@@ -96,10 +96,17 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
 
 
                 case R.id.buttonBorrarTrabajo:
-                    Intent intent = new Intent(context,BorrarTrabajoActivity.class);
-                    intent.putExtra("textViewJobTitle",textViewJobTitle.getText());
-                    context.startActivity(intent);
-                    break;
+                    cadena = (String)textViewCreatedBy.getText();
+                    if (cadena.equals("grupo_1") ) {
+
+                        break;
+
+                    }else{
+                        //FALTA COLOCAR DIALOG
+                        Toast.makeText(context,"No es posible borrar", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+
             }
 
         }
