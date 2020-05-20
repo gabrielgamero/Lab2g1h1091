@@ -7,9 +7,6 @@ import java.text.StringCharacterIterator;
 public class Apikey<key> {
     private String estado;
     private String cuota;
-    @SerializedName(value = "api-key")
-    private String apikey;
-
 
     public String getApikey() {
         return apikey;
@@ -18,6 +15,9 @@ public class Apikey<key> {
     public void setApikey(String apikey) {
         this.apikey = apikey;
     }
+
+    @SerializedName(value = "api-key")
+    private String apikey;
 
 
 

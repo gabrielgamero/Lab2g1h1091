@@ -96,8 +96,17 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
 
 
                 case R.id.buttonBorrarTrabajo:
+                    //--------------------------------------------------------------------------------------
+
+
+
+                    //--------------------------------------------------------------------------------------
+
+
+
                     Intent intent = new Intent(context,BorrarTrabajoActivity.class);
-                    intent.putExtra("textViewJobTitle",textViewJobTitle.getText());
+                    intent.putExtra("textViewJobId",textViewJobId.getText());
+
                     context.startActivity(intent);
                     break;
             }
