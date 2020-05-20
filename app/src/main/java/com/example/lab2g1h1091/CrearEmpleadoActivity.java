@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.android.volley.AuthFailureError;
@@ -170,6 +172,90 @@ public class CrearEmpleadoActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
         requestQueue.add(trabajoRequest);
         requestQueue.add(empleadoRequest);
+
+
+    }
+
+    public void btnCrearEmpleado(View view){
+        EditText textFieldFirstname = findViewById(R.id.textFieldFirstname);
+        EditText textFieldLastname = findViewById(R.id.textFieldLastname);
+        EditText textFieldEmail = findViewById(R.id.textFieldEmail);
+        EditText textFieldCelular = findViewById(R.id.textFieldCelular);
+        Spinner spinnerTrabajo = findViewById(R.id.spinnerTrabajo);
+        EditText textFieldSalario = findViewById(R.id.textFieldSalario);
+        EditText textFieldComissionPct = findViewById(R.id.textFieldComissionPct);
+        Spinner spinnerJefe = findViewById(R.id.spinnerJefe);
+        Spinner spinnerDepartamentos = findViewById(R.id.spinnerDepartamentos);
+
+        String firstname = textFieldFirstname.getText().toString();
+        String lastname = textFieldLastname.getText().toString();
+        String email = textFieldEmail.getText().toString();
+        String celular = textFieldCelular.getText().toString();
+        String trabajoElegido = spinnerTrabajo.getSelectedItem().toString();
+        String salario = textFieldSalario.getText().toString();
+        String comision = textFieldComissionPct.getText().toString();
+        String jefeElegido = spinnerJefe.getSelectedItem().toString();
+        String departamento = spinnerDepartamentos.getSelectedItem().toString();
+
+
+        Departamento[] departamentoElegido = new Departamento[1];
+
+        /*
+        Trabajo[] trabajoElegidoArray = new Trabajo[1];
+        Empleado[] jefeElegidoArray = new Empleado[1];
+        Departamento[] departamentoElegidoArray = new Departamento[1];
+
+
+        // Obtengo que trabajo, jefe y departamento ha sido elegido, luego obtengo sus otros atributos en un arreglo:
+        int i = 0;
+        for(Trabajo trabajo:listaTrabajos){
+            if(trabajo.getJobTitle() == trabajoElegido){
+                trabajoElegidoArray[i] = trabajo;
+                break;
+            }
+            i++;
+        }
+
+
+        i=0;
+        for(Empleado empleado:listaEmpleados){
+            String nombreCompletoJefe = empleado.getFirstName() + " " + empleado.getLastName();
+            if(nombreCompletoJefe == jefeElegido){
+                jefeElegidoArray[i] = empleado;
+                break;
+            }
+            i++;
+        }
+
+
+        int i=0;
+        for(Departamento departamento:listaDepartamentos){
+            if(departamento.getDepartmentName() == departamentoElegido){
+                departamentoElegidoArray[i] = departamento;
+                break;
+            }
+            i++;
+        }
+        */
+
+
+        int i = 0;
+        for(Departamento depa:listaDepartamentos){
+
+            if(depa.getDepartmentName() == departamento) {
+                departamentoElegido[i] = depa;
+                break;
+            }
+            i = i +1 ;
+        }
+        Departamento depart = departamentoElegido[0];
+
+
+        Log.d("nombreDepartamento",depart.getDepartmentName());
+        //Log.d("nombreTrabajo",trabajoElegidoArray[0].getJobTitle());
+        //Log.d("nombreJefe",jefeElegidoArray[0].getFirstName());
+
+
 
 
     }
