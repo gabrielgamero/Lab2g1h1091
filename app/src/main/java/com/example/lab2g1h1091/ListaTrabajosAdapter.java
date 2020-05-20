@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab2g1h1091.entidades.Trabajo;
 
-import org.w3c.dom.Text;
-
 public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdapter.TrabajoViewHolder> {
 
     // Data que obtendré de onResponse
@@ -23,6 +21,7 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
 
     // Contexto para inflar el elemento
     Context contexto;
+
 
     public ListaTrabajosAdapter(Trabajo[] lista, Context c) {
         this.listTrabajos = lista;
@@ -59,7 +58,7 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
 
             textViewMinSalary = itemView.findViewById(R.id.textViewMinSalary);
             textViewMaxSalary = itemView.findViewById(R.id.textViewMaxSalary);
-            textViewCreatedBy = itemView.findViewById(R.id.textViewCreatedBy);
+            textViewCreatedBy = itemView.findViewById(R.id.textViewEmployeeId);
             //Referencia a botones:
             buttonEditarTrabajo = itemView.findViewById(R.id.buttonEditarTrabajo);
             buttonBorrarTrabajo = itemView.findViewById(R.id.buttonBorrarTrabajo);
@@ -137,7 +136,7 @@ public class ListaTrabajosAdapter extends RecyclerView.Adapter<ListaTrabajosAdap
 
         String textoMinSalary = Integer.toString(t.getMinSalary());
         holder.textViewMinSalary.setText(textoMinSalary);
-    String textoMaxSalary = Integer.toString(t.getMaxSalary());
+        String textoMaxSalary = Integer.toString(t.getMaxSalary());
         holder.textViewMaxSalary.setText(textoMaxSalary);
 
 

@@ -28,14 +28,14 @@
         app:srcCompat="@drawable/ic_phone" />
 
     <TextView
-        android:id="@+id/textViewName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/textViewFirstName"
+        android:layout_width="155dp"
+        android:layout_height="25dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="4dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="Name"
+        android:text="FirstName"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewPerson"
         app:layout_constraintEnd_toStartOf="@+id/buttonEditar"
@@ -47,12 +47,13 @@
         android:id="@+id/textViewEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Email"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewName"
+        app:layout_constraintEnd_toEndOf="@+id/textViewFirstName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewName"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+        app:layout_constraintStart_toStartOf="@+id/textViewFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFirstName" />
 
     <TextView
         android:id="@+id/textViewPhoneNumber"
@@ -110,5 +111,31 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonBorrar"
         app:layout_constraintTop_toTopOf="@+id/buttonBorrar"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewEmployeeId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/textViewCommisionPct"
+        app:layout_constraintTop_toBottomOf="@+id/buttonEditar" />
+
+    <TextView
+        android:id="@+id/textViewCreatedBy2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/textViewCommisionPct"
+        app:layout_constraintTop_toBottomOf="@+id/buttonEditar" />
+
+    <TextView
+        android:id="@+id/textViewLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LastName"
+        tools:layout_editor_absoluteX="63dp"
+        tools:layout_editor_absoluteY="40dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
