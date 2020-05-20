@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -19,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.lab2g1h1091.entidades.DtoEmpleado;
 import com.example.lab2g1h1091.entidades.DtoTrabajo;
 import com.example.lab2g1h1091.entidades.Empleado;
+import com.example.lab2g1h1091.entidades.ResultTrabajo;
 import com.example.lab2g1h1091.entidades.Trabajo;
 import com.google.gson.Gson;
 
@@ -53,16 +55,16 @@ public class CrearEmpleadoActivity extends AppCompatActivity {
                         //Log.d("apikey", apikey);
 
                         Gson gson = new Gson();
-                        DtoDepartamento dtoDepartamento = gson.fromJson(response,DtoDepartamento.class);
+                        DtoDepartamento dtoDepartamento = gson.fromJson(response, DtoDepartamento.class);
                         listaDepartamentos = dtoDepartamento.getDepartamentos();
                         String[] listaDepartNames = new String[listaDepartamentos.length];
                         int i = 0;
-                        for(Departamento depa:listaDepartamentos){
+                        for (Departamento depa : listaDepartamentos) {
                             listaDepartNames[i] = depa.getDepartmentName();
-                            i = i +1 ;
+                            i = i + 1;
                         }
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(CrearEmpleadoActivity.this,
-                                android.R.layout.simple_spinner_dropdown_item,listaDepartNames);
+                                android.R.layout.simple_spinner_dropdown_item, listaDepartNames);
                         Spinner spinner = findViewById(R.id.spinnerDepartamentos);
                         spinner.setAdapter(adapter);
 
@@ -77,8 +79,8 @@ public class CrearEmpleadoActivity extends AppCompatActivity {
                 }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> cabeceras = new HashMap<>();
-                cabeceras.put("api-key",apikey);
+                Map<String, String> cabeceras = new HashMap<>();
+                cabeceras.put("api-key", apikey);
                 return cabeceras;
             }
         };
@@ -166,7 +168,6 @@ public class CrearEmpleadoActivity extends AppCompatActivity {
         };
 
 
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         requestQueue.add(stringRequest);
@@ -176,7 +177,7 @@ public class CrearEmpleadoActivity extends AppCompatActivity {
 
     }
 
-    public void btnCrearEmpleado(View view){
+    public void btnCrearEmpleado(View view) {
         EditText textFieldFirstname = findViewById(R.id.textFieldFirstname);
         EditText textFieldLastname = findViewById(R.id.textFieldLastname);
         EditText textFieldEmail = findViewById(R.id.textFieldEmail);
@@ -187,76 +188,129 @@ public class CrearEmpleadoActivity extends AppCompatActivity {
         Spinner spinnerJefe = findViewById(R.id.spinnerJefe);
         Spinner spinnerDepartamentos = findViewById(R.id.spinnerDepartamentos);
 
-        String firstname = textFieldFirstname.getText().toString();
-        String lastname = textFieldLastname.getText().toString();
-        String email = textFieldEmail.getText().toString();
-        String celular = textFieldCelular.getText().toString();
+        final String firstname = textFieldFirstname.getText().toString();
+        final String lastname = textFieldLastname.getText().toString();
+        final String email = textFieldEmail.getText().toString();
+        final String celular = textFieldCelular.getText().toString();
         String trabajoElegido = spinnerTrabajo.getSelectedItem().toString();
         String salario = textFieldSalario.getText().toString();
-        String comision = textFieldComissionPct.getText().toString();
+        final String comision = textFieldComissionPct.getText().toString();
         String jefeElegido = spinnerJefe.getSelectedItem().toString();
         String departamento = spinnerDepartamentos.getSelectedItem().toString();
 
 
-        Departamento[] departamentoElegido = new Departamento[1];
-
-        /*
-        Trabajo[] trabajoElegidoArray = new Trabajo[1];
-        Empleado[] jefeElegidoArray = new Empleado[1];
-        Departamento[] departamentoElegidoArray = new Departamento[1];
-
-
-        // Obtengo que trabajo, jefe y departamento ha sido elegido, luego obtengo sus otros atributos en un arreglo:
-        int i = 0;
-        for(Trabajo trabajo:listaTrabajos){
-            if(trabajo.getJobTitle() == trabajoElegido){
-                trabajoElegidoArray[i] = trabajo;
-                break;
-            }
-            i++;
-        }
-
-
-        i=0;
-        for(Empleado empleado:listaEmpleados){
-            String nombreCompletoJefe = empleado.getFirstName() + " " + empleado.getLastName();
-            if(nombreCompletoJefe == jefeElegido){
-                jefeElegidoArray[i] = empleado;
-                break;
-            }
-            i++;
-        }
-
-
-        int i=0;
-        for(Departamento departamento:listaDepartamentos){
-            if(departamento.getDepartmentName() == departamentoElegido){
-                departamentoElegidoArray[i] = departamento;
-                break;
-            }
-            i++;
-        }
-        */
-
+        final Departamento[] departamentoElegido = new Departamento[1];
 
         int i = 0;
-        for(Departamento depa:listaDepartamentos){
+        for (Departamento depa : listaDepartamentos) {
 
-            if(depa.getDepartmentName() == departamento) {
+            if (depa.getDepartmentName() == departamento) {
                 departamentoElegido[i] = depa;
                 break;
             }
-            i = i +1 ;
+            i = i + 1;
         }
-        Departamento depart = departamentoElegido[0];
+        final Departamento depart = departamentoElegido[0];
+
+        //----------------------------
+        final Trabajo[] trabajoElegido_e = new Trabajo[1];
+
+        int e = 0;
+        for (Trabajo tra : listaTrabajos) {
+
+            if (tra.getJobTitle() == trabajoElegido) {
+                trabajoElegido_e[e] = tra;
+                break;
+            }
+            e = e + 1;
+        }
+        final Trabajo trabajo = trabajoElegido_e[0];
+
+        //_--------------------
 
 
-        Log.d("nombreDepartamento",depart.getDepartmentName());
-        //Log.d("nombreTrabajo",trabajoElegidoArray[0].getJobTitle());
-        //Log.d("nombreJefe",jefeElegidoArray[0].getFirstName());
+        final String employeeId = String.valueOf(listaEmpleados.length) + "_" + depart.getDepartmentShortName();
+
+        Empleado jefeElegido1 = new Empleado();
+        for (Empleado em : listaEmpleados) {
+            String jefe = em.getFirstName() + " " + em.getLastName();
+            if (jefe.equals(jefeElegido)) {
+                jefeElegido1 = em;
+                break;
+            }
 
 
+        }
+
+
+        //-----------------------------------------------------------------------------
+        //GUARDAR TRABAJO
+        String url = "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/empleado ";
+
+        final Empleado finalJefeElegido = jefeElegido1;
+        StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("resul_trabajo", response);
+                        //Log.d("resul_trabajo", error);
+
+                        Gson gson = new Gson();
+                        ResultTrabajo estado_Trabajo = gson.fromJson(response, ResultTrabajo.class);
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("errorVol", error.getMessage());
+                    }
+                }) {
+
+
+            @Override
+            public Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<>();
+
+                parametros.put("employeeId", employeeId);
+                parametros.put("lastName", lastname);
+                parametros.put("jobId", trabajo.getJobId());
+                parametros.put("managerId", finalJefeElegido.getEmployeeId());
+
+                parametros.put("departmentId", depart.getDepartmentId());
+                parametros.put("email", email);
+                parametros.put("commissionPct", comision);
+                parametros.put("firstName", firstname);
+                parametros.put("phoenNumber", celular);
+
+
+                return parametros;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> cabeceras = new HashMap<>();
+                // Pasamos como cabecera el api-key [obtener el api-key desde android]
+                cabeceras.put("api-key", apikey);
+                return cabeceras;
+            }
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        requestQueue.add(stringRequest);
+
+        //-----------------------------------------------------------------------------
+
+        Intent intent2 = new Intent(CrearEmpleadoActivity.this, MainActivity.class);
+        setResult(RESULT_OK, intent2);
+        finish();
 
 
     }
-}
+
+
+    }
+
