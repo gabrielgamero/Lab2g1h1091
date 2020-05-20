@@ -86,6 +86,9 @@ public class CrearTrabajoActivity extends AppCompatActivity {
             }
         };
 
+
+
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         requestQueue.add(stringRequest);
@@ -182,7 +185,7 @@ public class CrearTrabajoActivity extends AppCompatActivity {
                     parametros.put("jobTitle",nombreTrabajo);
                     parametros.put("minSalary",salarioMin);
                     parametros.put("maxSalary",salarioMax);
-
+                    parametros.put("createdBy","grupo1");
                     return parametros;
                 }
                 @Override
