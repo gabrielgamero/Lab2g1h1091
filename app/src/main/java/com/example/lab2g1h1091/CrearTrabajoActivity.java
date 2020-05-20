@@ -172,10 +172,12 @@ public class CrearTrabajoActivity extends AppCompatActivity {
                             Log.e("errorVol", error.getMessage());
                         }
                     }) {
+
+
                 @Override
                 public Map<String, String> getParams() throws AuthFailureError {
                     Map<String,String> parametros = new HashMap<>();
-                    //parametros.put("api-key",apikey);
+
                     parametros.put("jobId",jobId);
                     parametros.put("jobTitle",nombreTrabajo);
                     parametros.put("minSalary",salarioMin);
@@ -190,6 +192,7 @@ public class CrearTrabajoActivity extends AppCompatActivity {
                     cabeceras.put("api-key",apikey);
                     return cabeceras;
                 }
+
             };
 
             RequestQueue requestQueue = Volley.newRequestQueue(this);
