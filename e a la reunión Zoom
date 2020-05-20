@@ -1,0 +1,60 @@
+[33m120d7ee[m[33m ([m[1;36mHEAD -> [m[1;32mBranko[m[33m)[m commit update
+[33m8b1a697[m Agregando spinnerTrabajoPrueba
+[33mf7b6b89[m[33m ([m[1;31morigin/Eduardo[m[33m, [m[1;32mmaster[m[33m)[m Editar y validacion completo, falta eliminar
+[33mc53afcc[m Junto Cambio de Branko a Eduardo
+[33m7a2002c[m Merge branch 'Branko' of https://github.com/gabrielgamero/Lab2g1h1091
+[33mdbdde9a[m[33m ([m[1;31morigin/Branko[m[33m)[m Merge branch 'gabriel' into Branko
+[33m9f1a789[m Merge branch 'Branko' of https://github.com/gabrielgamero/Lab2g1h1091
+[33m8e531ee[m editar listo
+[33m09a23bc[m[33m ([m[1;32mgabriel[m[33m)[m Validación para eliminar y editar creaciones propias
+[33m3f02752[m Integrando gabriel
+[33mc5745c2[m Intentado Editaractivity
+[33mc931994[m Intentado Editar
+[33m6605c7b[m[33m ([m[1;31morigin/gabriel[m[33m)[m EditarTrabajoActivity y BorrarTrabajoActvity creados: botones editar y borrar llevan a sus activities respectivas, donde se imprime el JobTitle del item al cual se está borrando/editando
+[33mde03087[m merging a gabriel
+[33m7ce9116[m merging a master
+[33m91076ce[m vcs.xml modificado automáticamente
+[33m19c94d3[m Modificado CrearTrabajo y main
+[33m925d71c[m activity_get_api.xml eliminado
+[33mce40b94[m parte de eduardo integrada: GetApiKey, listar departamentos. spinner
+[33m1c70c1c[m conflictos resueltos con branch Eduardo
+[33mbb307fc[m MainActivity, AndroidManifest editados: botón hacia formulario crear Trabajo agregado (con botón atrás en formulario)
+[33mc7f0acf[m actualizado lista_departamentos
+[33mba08685[m retornar lista_departamentos
+[33mc1ac133[m activity_crear_trabajo.xml editado: formulario para crear trabajo editado (falta desplegable de departamentos)
+[33mf40f32c[m CrearTrabajoActivity creada
+[33me548c62[m ListaTrabajosAdapter, item_rv.xml editados: vista editada
+[33m40ee165[m build.gradle y styles.xml editados: Material Design activado
+[33m9e2bad4[m MainActivity y EmpleadoActivity editados: finalizar activity de EmpleadoActivity al regresar a MainActivity
+[33mb74904b[m EmpleadoActivity, appbar_empleado.xml editados: action bar para Empleado configurada
+[33mdc411da[m appbar_empleado.xml creado
+[33m25f21c3[m EmpleadoActivity, ListaEmpleadosAdapter, activity_empleado.xml, item_rv.xml item_rv_empleado.xml editados: RecycleViewer Empleado funcionando (falta implementar info de Manager y Department)
+[33m7e0901b[m ListaEmpleadosAdapter creado
+[33m05abc23[m item_rv_empleado.xml creado
+[33mfd41d7a[m obtener api y crear trabajo
+[33m92092b0[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m Create README.md
+[33mad53a86[m activity_empleado.xml editado: vista RecyclerView agredada
+[33maee2901[m Clases DtoEmpleado y Empleado creadas; EmpleadoActivty y activity_empleado.xml editados: (recibiendo json en el log con api-key hardcodeado
+[33mfabec7e[m AndroidManifest.xml editado: boton back para EmpleadoActivity
+[33m49d488f[m EmpleadoActivity, MainActivity y appbar.xml editados: boton para movernos de EmpleadoActivity a MainActivity configurado
+[33m06f88ec[m EmpleadoActivity creada
+[33me5c51e7[m MainActivity y appbar.xml editados: appbar para main Activity implementada (irimiendo Toasts)
+[33mec648c1[m appbar.xml editado; iconos add y person agregados
+[33m28e1782[m archivo appbar.xml creado
+[33m51e2432[m item_rv.xml editado
+[33m7d4cb62[m ListaTrabajosAdapter editado: parámetros de JobId, Max Salary y MinSalary impresos en aplicacion
+[33mfa9801d[m item_rv.xml personalizado; image asset ic_work agregado
+[33m7f57f1d[m activity_main.xml editado
+[33m199a966[m MainActicity editado: RecyclerView vinculado con su Adapter y su LayoutManager ; activity_main.xml editado: id para recyclerView agregado
+[33m58c97a7[m ListaTrabajosAdapter editado: : getItemCount sobreescrito
+[33mb9b38f2[m ListaTrabajosAdapter editado: onBindViewHolder sobreescrito
+[33m707113a[m ListaTrabajosAdapter editado: onCreateViewHolder sobreescrito
+[33maec9987[m ListaTrabajosAdapter editado: ViewHolder creado como subclase del Adapter
+[33mabce48c[m ListaTrabajosAdapter creado (Adapter del RecyclerView)
+[33mf553797[m Clases DtoTrabajo y Trabajo editadas: cambio en nombres y tipos en los atributos. MainActivity editado: json transformado a objetos Java
+[33m0bde778[m AndroidManifest soporta cleartext HTTP, archivos MainActivity y su XML editados (recibiendo json en el log con api-key hardcodeado)
+[33m711b162[m AndroidManifest editado para permisos de conexión a Internet
+[33mca94dc0[m activity_main editado, item_rv creado, clases DtoTrabajo y Trabajo creadas
+[33m0a647ed[m 3 dependencias agregadas: volley, gson y recyclerview
+[33md47c25f[m archivos xml agregados (misc, runConfigurations,vcs)
+[33m9a88498[m Proyecto Android Lab2 inicializado

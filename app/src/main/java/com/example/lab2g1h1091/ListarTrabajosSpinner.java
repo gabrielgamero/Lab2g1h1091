@@ -39,49 +39,7 @@ public class ListarTrabajosSpinner extends AppCompatActivity {
         Intent intent = getIntent();
         apikey = intent.getStringExtra("apikey");
 
-        String url =
-                "http://ec2-54-165-73-192.compute-1.amazonaws.com:9000/listar/trabajos";
 
-        StringRequest trabajoRequest = new StringRequest(StringRequest.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("exitoVol", response);
-                        //Log.d("apikey", apikey);
-
-                        Gson gson = new Gson();
-                        DtoTrabajo dtoTrabajo = gson.fromJson(response, DtoTrabajo.class);
-                        listaTrabajos = dtoTrabajo.getTrabajos();
-                        String[] listaTrabajoNames = new String[listaTrabajos.length];
-                        int i = 0;
-                        for (Trabajo trabajo : listaTrabajos) {
-                            listaTrabajoNames[i] = trabajo.getJobTitle();
-                            i = i + 1;
-                        }
-                        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(MainActivity.this,
-                                android.R.layout.simple_spinner_dropdown_item, listaTrabajoNames);
-                        Spinner spinner = findViewById(R.id.spinnerTrabajo);
-                        spinner.setAdapter(adapter2);
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("errorVol", error.getMessage());
-                    }
-                }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> cabeceras = new HashMap<>();
-                cabeceras.put("api-key", apikey);
-                return cabeceras;
-            }
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-        requestQueue.add(trabajoRequest);
 
 
     }
